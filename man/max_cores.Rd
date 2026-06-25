@@ -2,20 +2,17 @@
 % Please edit documentation in R/RcppExports.R
 \name{max_cores}
 \alias{max_cores}
-\title{Max CPU cores}
+\title{Maximum Number of OpenMP Threads}
 \usage{
 max_cores()
 }
 \value{
-Integer containing the maximum number of CPU cores.
-
-If 0, then parallelization is not supported and a silent failure occurs
+An \code{integer} with the maximum number of \emph{OpenMP} threads, or \code{0} when the
+package was built without \emph{OpenMP} support.
 }
 \description{
-Determine the number of cores available
+Reports the number of threads \emph{OpenMP} would use on this machine.
 }
 \examples{
-
-# Retrieve the number of total cores on the machine.
 max_cores()
 }

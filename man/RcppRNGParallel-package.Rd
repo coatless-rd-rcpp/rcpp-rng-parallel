@@ -4,12 +4,26 @@
 \name{RcppRNGParallel-package}
 \alias{RcppRNGParallel}
 \alias{RcppRNGParallel-package}
-\title{RcppRNGParallel: Random Number Generation in Parallel with Static Threads}
+\title{RcppRNGParallel: Independent Parallel Random Number Streams with dqrng}
 \description{
-Explores the best practices for parallel number generation streams.
+Shows how to draw random numbers in parallel with independent, reproducible streams by giving each thread its own substream of a single seeded 'dqrng' generator.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/coatless-rd-rcpp/rcpp-rng-parallel}
+  \item \url{https://rd-rcpp.thecoatlessprofessor.com/rcpp-rng-parallel/}
+  \item Report bugs at \url{https://github.com/coatless-rd-rcpp/rcpp-rng-parallel/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: James Balamuta \email{balamut2@illinois.edu}
+
+Authors:
+\itemize{
+  \item James Balamuta \email{balamut2@illinois.edu}
+}
 
 }
 \keyword{internal}

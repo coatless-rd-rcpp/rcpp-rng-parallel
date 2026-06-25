@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // max_cores
 int max_cores();
 RcppExport SEXP _RcppRNGParallel_max_cores() {
@@ -16,22 +21,24 @@ BEGIN_RCPP
 END_RCPP
 }
 // draw_numeric_unif
-std::vector<double> draw_numeric_unif(unsigned int n, double min, double max);
-RcppExport SEXP _RcppRNGParallel_draw_numeric_unif(SEXP nSEXP, SEXP minSEXP, SEXP maxSEXP) {
+std::vector<double> draw_numeric_unif(unsigned int n, double min, double max, int seed, int n_cores);
+RcppExport SEXP _RcppRNGParallel_draw_numeric_unif(SEXP nSEXP, SEXP minSEXP, SEXP maxSEXP, SEXP seedSEXP, SEXP n_coresSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< unsigned int >::type n(nSEXP);
     Rcpp::traits::input_parameter< double >::type min(minSEXP);
     Rcpp::traits::input_parameter< double >::type max(maxSEXP);
-    rcpp_result_gen = Rcpp::wrap(draw_numeric_unif(n, min, max));
+    Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
+    Rcpp::traits::input_parameter< int >::type n_cores(n_coresSEXP);
+    rcpp_result_gen = Rcpp::wrap(draw_numeric_unif(n, min, max, seed, n_cores));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_RcppRNGParallel_max_cores", (DL_FUNC) &_RcppRNGParallel_max_cores, 0},
-    {"_RcppRNGParallel_draw_numeric_unif", (DL_FUNC) &_RcppRNGParallel_draw_numeric_unif, 3},
+    {"_RcppRNGParallel_draw_numeric_unif", (DL_FUNC) &_RcppRNGParallel_draw_numeric_unif, 5},
     {NULL, NULL, 0}
 };
 

@@ -2,25 +2,39 @@
 % Please edit documentation in R/RcppExports.R
 \name{draw_numeric_unif}
 \alias{draw_numeric_unif}
-\title{Static Thread Local Parallelized Uniform RNG sampler}
+\title{Draw Uniform Variates in Parallel with Independent Streams}
 \usage{
-draw_numeric_unif(n, min = 0, max = 1)
+draw_numeric_unif(n, min = 0, max = 1, seed = 42L, n_cores = 1L)
 }
 \arguments{
 \item{n}{Number of values to generate.}
 
-\item{min}{Bottom value to generate values from in a continuous uniform.}
+\item{min}{Lower bound of the continuous uniform distribution.}
 
-\item{max}{Top range to generate values from in a continuous uniform.}
+\item{max}{Upper bound of the continuous uniform distribution.}
+
+\item{seed}{Seed for the base random number generator.}
+
+\item{n_cores}{Number of threads to use.}
 }
 \value{
-A \code{numeric} vector containing the output.
+A \code{numeric} vector of length \code{n}.
 }
 \description{
-Samples from the Uniform distribution in parallel through using
-core specific RNG engines that are kept active throughout the calculation.
+Samples from a uniform distribution in parallel, giving each thread its own
+independent substream of a single seeded \code{dqrng} generator so that no two
+threads ever produce the same values.
+}
+\details{
+A single \code{dqrng::xoshiro256plus} generator is seeded once. Inside the
+parallel region each thread copies that generator and advances it with
+\code{long_jump()} by an amount unique to the thread, which lands it on a
+non-overlapping substream. The result is reproducible for a fixed \code{seed}
+and \code{n_cores}. This is the correction to the naive approach of giving each
+thread a default-constructed engine, which would leave every thread drawing
+the same sequence.
 }
 \examples{
-# Retrieves 100 observations from a random uniform distribution.
-x = draw_numeric_unif(100)
+# 100 draws across 2 threads, reproducible for this seed and core count.
+draw_numeric_unif(100, n_cores = 2, seed = 42)
 }

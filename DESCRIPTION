@@ -1,27 +1,24 @@
 Package: RcppRNGParallel
-Title: Random Number Generation in Parallel with Static Threads
+Title: Independent Parallel Random Number Streams with dqrng
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R:
     person(given = "James",
            family = "Balamuta",
            role = c("aut", "cre"),
            email = "balamut2@illinois.edu")
-Description: Explores the best practices for parallel number generation streams.
+Description: Shows how to draw random numbers in parallel with independent,
+    reproducible streams by giving each thread its own substream of a single
+    seeded 'dqrng' generator.
+BugReports: https://github.com/coatless-rd-rcpp/rcpp-rng-parallel/issues
+URL: https://github.com/coatless-rd-rcpp/rcpp-rng-parallel, https://rd-rcpp.thecoatlessprofessor.com/rcpp-rng-parallel/
 License: GPL (>= 2)
 Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
-LinkingTo: 
+LinkingTo:
     Rcpp,
     dqrng,
     BH,
     sitmo
-Imports: 
+Imports:
     Rcpp
-Suggests: 
-    knitr,
-    rmarkdown,
-    ggplot2,
-    reshape2
-VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0
