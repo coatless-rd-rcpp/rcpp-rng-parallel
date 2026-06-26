@@ -130,11 +130,13 @@ The `dqrng` generators are header-only and are reached through
 `LinkingTo`, together with their own dependencies `BH` and `sitmo`.
 `Rcpp` provides the bridge to *R*.
 
-    LinkingTo:
-        Rcpp,
-        dqrng,
-        BH,
-        sitmo
+``` default
+LinkingTo:
+    Rcpp,
+    dqrng,
+    BH,
+    sitmo
+```
 
 `src/Makevars` and `src/Makevars.win` turn on *OpenMP* with *R*’s
 `$(SHLIB_OPENMP_CXXFLAGS)` variable:

@@ -130,11 +130,11 @@
 <code>DESCRIPTION</code><a class="anchor" aria-label="anchor" href="#description"></a>
 </h3>
 <p>The <code>dqrng</code> generators are header-only and are reached through <code>LinkingTo</code>, together with their own dependencies <code>BH</code> and <code>sitmo</code>. <code>Rcpp</code> provides the bridge to <em>R</em>.</p>
-<pre><code>LinkingTo:
-    Rcpp,
-    dqrng,
-    BH,
-    sitmo</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>LinkingTo:</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    Rcpp,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    dqrng,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>    BH,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    sitmo</span></code></pre></div>
 <p><code>src/Makevars</code> and <code>src/Makevars.win</code> turn on <em>OpenMP</em> with <em>R</em>’s <code>$(SHLIB_OPENMP_CXXFLAGS)</code> variable:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode makefile"><code class="sourceCode makefile"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="dt">PKG_CXXFLAGS</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$(</span><span class="dt">SHLIB_OPENMP_CXXFLAGS</span><span class="ch">)</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="dt">PKG_LIBS</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$(</span><span class="dt">SHLIB_OPENMP_CXXFLAGS</span><span class="ch">)</span></span></code></pre></div>
