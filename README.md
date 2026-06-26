@@ -6,7 +6,7 @@
 
 The `RcppRNGParallel` _R_ package shows how to draw random numbers in parallel so
 that each thread produces an independent, reproducible stream. It uses the
-[`dqrng`](https://daqana.github.io/dqrng/) package's generators, which can jump a
+[`dqrng`][dqrng] package's generators, which can jump a
 stream ahead to a non-overlapping substream.
 
 ### Usage
@@ -14,9 +14,9 @@ stream ahead to a non-overlapping substream.
 To install the package, you must first have a compiler on your system that is
 compatible with R and that supports _OpenMP_. For help on obtaining a compiler
 consult either
-[macOS](http://thecoatlessprofessor.com/programming/r-compiler-tools-for-rcpp-on-os-x/)
+[macOS][compiler-macos]
 or
-[Windows](http://thecoatlessprofessor.com/programming/rcpp/install-rtools-for-rcpp/)
+[Windows][compiler-windows]
 guides.
 
 With a compiler in hand, one can then install the package from GitHub by:
@@ -125,7 +125,7 @@ The `dqrng` generators are header-only and are reached through `LinkingTo`,
 together with their own dependencies `BH` and `sitmo`. `Rcpp` provides the bridge
 to _R_.
 
-```
+```default
 LinkingTo:
     Rcpp,
     dqrng,
@@ -144,3 +144,7 @@ PKG_LIBS = $(SHLIB_OPENMP_CXXFLAGS)
 ## License
 
 GPL (\>= 2)
+
+[compiler-macos]: http://thecoatlessprofessor.com/programming/r-compiler-tools-for-rcpp-on-os-x/
+[compiler-windows]: http://thecoatlessprofessor.com/programming/rcpp/install-rtools-for-rcpp/
+[dqrng]: https://daqana.github.io/dqrng/
